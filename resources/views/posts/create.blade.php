@@ -1,15 +1,8 @@
 @extends('layouts.layout')
 
 @section('content')
-    @if($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    <h1>Create Post</h1>
+    @include('layouts.error')
     <form action="{{ route('posts.store') }}" method="POST">
         @csrf
         

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -15,16 +14,13 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('show');
+        $this->middleware('auth')->except(['show', 'index']);
     }
 
     public function index()
     {
-//        $posts = Post::all();
-//        använd eloquent relatationship
-        $posts = DB::table('posts')
-                    ->join('users', '')
-        return view('posts.index', compact(['posts', 'owner']));
+        $posts = Post::all();
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -54,7 +50,7 @@ class PostController extends Controller
 
         Post::create($validated);
 
-        redirect(route('posts.index'));
+        return redirect(route('posts.index'));
     }
 
     /**
@@ -65,7 +61,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -76,7 +72,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        abort_if($post->user_id !== auth()->id(), 403);
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -88,17 +85,26 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $validated = $request->validate([
+           'title' => ['required', 'min: 3'],
+            'body' => 'required'
+        ]);
+
+        $post->update($validated);
+
+        return redirect(route('posts.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Post  $post
+     * @param \App\Post $post
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect(route('posts.index'));
     }
 }
