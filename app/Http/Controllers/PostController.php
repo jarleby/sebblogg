@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -19,7 +20,11 @@ class PostController extends Controller
 
     public function index()
     {
-        //
+//        $posts = Post::all();
+//        använd eloquent relatationship
+        $posts = DB::table('posts')
+                    ->join('users', '')
+        return view('posts.index', compact(['posts', 'owner']));
     }
 
     /**
@@ -29,7 +34,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -40,7 +45,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => ['required', 'min: 3'],
+            'body' => 'required'
+        ]);
+
+        $validated['user_id'] = auth()->id();
+
+        Post::create($validated);
+
+        redirect(route('posts.index'));
     }
 
     /**

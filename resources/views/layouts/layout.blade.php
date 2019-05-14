@@ -21,34 +21,37 @@
                     <a class="nav-link" href="/">{{ __('Home') }}</a>
                 </li>
                 @auth
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('posts.create') }}">{{ __('Create Post') }}</a>
-                </li>
-                <li class="nav-item active">
-                    <a href="{{ route('logout') }}" class="nav-link"
-                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-                </li>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">{{ __(auth()->user()->username) }}</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
+                    <li class="nav-item active">
+                        <a href="{{ route('posts.index') }}" class="nav-link">{{ __('Show Posts') }}</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('posts.create') }}">{{ __('Create Post') }}</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="{{ route('logout') }}" class="nav-link"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                    </li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="#">{{ __(auth()->user()->username) }}</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
                 @else
-                <li class="nav-item active">
-                    <a href="{{ route('login') }}" class="nav-link">{{ __('Login') }}</a>
-                </li>
-                <li class="nav-item active">
-                    <a href="{{ route('register') }}" class="nav-link">{{ __('Register') }}</a>
-                </li>
+                    <li class="nav-item active">
+                        <a href="{{ route('login') }}" class="nav-link">{{ __('Login') }}</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="{{ route('register') }}" class="nav-link">{{ __('Register') }}</a>
+                    </li>
                 @endauth
             </ul>
             <form class="form-inline my-2 my-lg-0">
