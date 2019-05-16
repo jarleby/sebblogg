@@ -11,11 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PageController@index');
 
-Route::resource('posts', 'PostController');
+// Alla rutter för user
+//Route::resource('users', 'UsersController');
+Route::get('users/{user}', 'UsersController@show')->name('users.show');
+
+// Alla rutter för posts
+Route::resource('posts', 'PostsController');
+
+// Alla rutter för kommentarer
+//Route::resource('comments', 'CommentsController');
+Route::post('/posts/{post}/comments', 'CommentsController@store')->name('comments.store');
+
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

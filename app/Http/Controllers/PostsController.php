@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -43,7 +44,7 @@ class PostController extends Controller
     {
         $validated = $request->validate([
             'title' => ['required', 'min: 3'],
-            'body' => 'required'
+            'body' => ['required', 'min: 3']
         ]);
 
         $validated['user_id'] = auth()->id();
