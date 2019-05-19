@@ -25,6 +25,7 @@
         </div>
 
         <div class="posts col-9">
+            <h1 class="text-center">{{ $user->username }}'s posts</h1>
             @if($user->posts->count())
                 @foreach($user->posts as $post)
                     <div class="card border-0 my-3">
