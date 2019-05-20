@@ -15,10 +15,13 @@ Route::get('/', 'PageController@index');
 
 // Alla rutter för user
 //Route::resource('users', 'UsersController');
-Route::get('users/{user}', 'UsersController@show')->name('users.show');
+Route::get('/users/{user}', 'UsersController@show')->name('users.show');
 
 // Alla rutter för posts
 Route::resource('posts', 'PostsController');
+
+// Rutter för privatmedelande
+Route::get('/message/send', 'PrivateMessageController@create')->name('message.send');
 
 // Alla rutter för kommentarer
 //Route::resource('comments', 'CommentsController');

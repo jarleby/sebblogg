@@ -21,6 +21,10 @@
                 <div class="edit-profile">
                     <a href="#" class="btn btn-light">Edit profile</a>
                 </div>
+            @else
+                <div class="edit-profile">
+                    <a href="{{ route('message.send') }}" class="btn btn-light">Send message</a>
+                </div>
             @endif
         </div>
 
