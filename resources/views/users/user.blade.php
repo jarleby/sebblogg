@@ -23,7 +23,8 @@
                 </div>
             @else
                 <div class="edit-profile">
-                    <a href="{{ route('message.send') }}" class="btn btn-light">Send message</a>
+{{--                    <a href="{{ route('message.send') }}" class="" style="text-align: center;">Send message</a>--}}
+                    <p style="text-align: center;"><a href="{{ route('message.send', $user->id) }}" class="btn btn-light">Send messsage</a></p>
                 </div>
             @endif
         </div>
