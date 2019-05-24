@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
         <a class="navbar-brand" href="/">Sebblogg</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

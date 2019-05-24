@@ -3,7 +3,7 @@
 @section('content')
     @foreach($messages as $message)
     <div class="messages row my-3 border">
-        <div class="messager col-2 my-2">
+        <div class="messenger col-2 my-2">
             <img src="https://via.placeholder.com/75" alt="profile picture" class="rounded-circle mx-auto d-block">
             <p class="text-center"><a href="{{ route('users.show', $message->users->username) }}">{{ $message->users->id === auth()->id() ? 'You' : $message->users->username }}</a></p>
         </div>

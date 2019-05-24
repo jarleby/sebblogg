@@ -6,30 +6,33 @@
 
 @section('content')
     <div class="row">
-        <div class="sidebar col-3">
-            <div class="profile-picture">
+        <div class="sidebar row my-3 col-xs-12 col-lg-3">
+            <div class="profile-picture col-12">
                 <img src="https://via.placeholder.com/150" alt="profile picture" class="rounded-circle mx-auto d-block">
             </div>
             <br>
-            <div class="username">
-                <h1 class="text-center">{{ $user->username }}</h1>
-            </div>
-            <div class="member-since">
-                <p class="text-center">Member since: {{ $user->created_at }}</p>
-            </div>
-            @if(auth()->id() === $user->id)
-                <div class="edit-profile">
-                    <a href="#" class="btn btn-light">Edit profile</a>
+            <div class="info col-12">
+                <div class="username">
+                    <h1 class="text-center">{{ $user->username }}</h1>
                 </div>
-            @else
-                <div class="edit-profile">
-{{--                    <a href="{{ route('message.send') }}" class="" style="text-align: center;">Send message</a>--}}
-                    <p style="text-align: center;"><a href="{{ route('message.send', $user->id) }}" class="btn btn-light">Send messsage</a></p>
+                <div class="member-since">
+                    <p class="text-center">Member since: </p>
+                    <p class="text-center">{{ $user->created_at }}</p>
                 </div>
-            @endif
+
+                @if(auth()->id() === $user->id)
+                    <div class="edit-profile">
+                        <p class="text-center"><a href="#" class="btn btn-light">Edit profile</a></p>
+                    </div>
+                @else
+                    <div class="edit-profile">
+                        <p class="text-center"><a href="{{ route('message.send', $user->id) }}" class="btn btn-light">Send messsage</a></p>
+                    </div>
+                @endif
+            </div>
         </div>
 
-        <div class="posts col-9">
+        <div class="posts my-3 col-xs-12 col-lg-9">
             <h1 class="text-center">{{ $user->username }}'s posts</h1>
             @if($user->posts->count())
                 @foreach($user->posts as $post)
