@@ -3,7 +3,7 @@
 @section('content')
     <h1>Update Post</h1>
     @include('layouts.error')
-    <form action="{{ route('posts.update', $post->id) }}" method="POST">
+    <form action="{{ route('posts.update', $post->id) }}" method="POST" class="my-2">
         @csrf
         @method('PATCH')
         <div class="form-group">
@@ -12,13 +12,13 @@
         </div>
         <div class="form-group">
             <label for="body">Text: </label>
-            <textarea name="body" id="body" cols="30" rows="10" class="form-control">{{ $post->body }}</textarea>
+            <textarea name="body" id="body" cols="30" rows="15" class="form-control">{{ $post->body }}</textarea>
         </div>
         <input type="submit" value="Update Post" class="btn btn-primary">
-        <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <input type="submit" value="Delete Post" class="btn btn-danger">
-        </form>
+    </form>
+    <form action="{{ route('posts.destroy', $post->id) }}" method="POST" class="my-2">
+        @csrf
+        @method('DELETE')
+        <input type="submit" value="Delete Post" class="btn btn-danger">
     </form>
 @endsection

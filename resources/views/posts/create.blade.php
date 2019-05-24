@@ -17,7 +17,7 @@
             <label for="body">
                 Text:
             </label>
-            <textarea name="body" id="body" class="form-control" cols="30" rows="10" required>{{ old('body') }}</textarea>
+            <textarea name="body" id="body" class="form-control" cols="30" rows="15" required>{{ old('body') }}</textarea>
         </div>
         <input type="submit" value="Create Post" class="btn btn-primary">
     </form>
