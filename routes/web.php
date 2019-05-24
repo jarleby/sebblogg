@@ -21,8 +21,9 @@ Route::get('/users/{user}', 'UsersController@show')->name('users.show');
 Route::resource('posts', 'PostsController');
 
 // Rutter för privatmedelande
-Route::get('/messages/send/{user}', 'PrivateMessageController@create')->name('message.send');
-Route::post('/messages/', 'PrivateMessageController@store')->name('message.store');
+Route::get('/messages/send/{user}', 'PrivateMessagesController@create')->name('messages.create');
+Route::post('/messages/', 'PrivateMessagesController@store')->name('messages.store');
+Route::get('/message/', 'PrivateMessagesController@index')->name('messages.index');
 
 // Alla rutter för kommentarer
 //Route::resource('comments', 'CommentsController');
