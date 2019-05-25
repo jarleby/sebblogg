@@ -6,7 +6,8 @@
     @endguest
     @auth
         @foreach(auth()->user()->notifications as $notification)
-            {{ $notification }}
+            <p>Nytt meddelande: </p>
+            <p>{{ $notification->data['message'] }}</p>
         @endforeach
     @endauth
 @endsection

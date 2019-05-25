@@ -56,7 +56,7 @@ class PrivateMessageReceived extends Notification
     {
         return [
             'message' => $this->invoice['message'],
-            'sender' => $this->invoice['username']
+            'sender_id' => $this->invoice['sender_id'],
         ];
     }
 }

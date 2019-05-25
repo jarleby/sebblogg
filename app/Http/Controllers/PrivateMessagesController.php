@@ -41,7 +41,7 @@ class PrivateMessagesController extends Controller
         PrivateMessage::create($validated);
 
         $user = User::where('id', request('receiver_id'))->firstOrFail();
-        $validated['username'] = $user->username;
+        $validated['sender'] = $user->username;
         $user->notify(new PrivateMessageReceived($validated));
 
         return back();
