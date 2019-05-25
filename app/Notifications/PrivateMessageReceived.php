@@ -16,9 +16,9 @@ class PrivateMessageReceived extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($invoice)
     {
-        //
+        $this->invoice = $invoice;
     }
 
     /**
@@ -29,7 +29,7 @@ class PrivateMessageReceived extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -52,10 +52,11 @@ class PrivateMessageReceived extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
-            //
+            'message' => $this->invoice['message'],
+            'sender' => $this->invoice['username']
         ];
     }
 }

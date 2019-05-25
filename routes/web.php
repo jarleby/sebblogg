@@ -23,7 +23,7 @@ Route::resource('posts', 'PostsController');
 // Rutter för privatmedelande
 Route::get('/messages/send/{user}', 'PrivateMessagesController@create')->name('messages.create');
 Route::post('/messages/', 'PrivateMessagesController@store')->name('messages.store');
-Route::get('/message/', 'PrivateMessagesController@index')->name('messages.index');
+Route::get('/messages/', 'PrivateMessagesController@index')->name('messages.index');
 
 // Alla rutter för kommentarer
 //Route::resource('comments', 'CommentsController');

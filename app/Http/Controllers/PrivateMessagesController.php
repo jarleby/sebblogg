@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\PrivateMessageReceived;
 use App\User;
 use Illuminate\Http\Request;
 use App\PrivateMessage;
@@ -38,6 +39,10 @@ class PrivateMessagesController extends Controller
         $validated['sender_id'] = auth()->id();
 
         PrivateMessage::create($validated);
+
+        $user = User::where('id', request('receiver_id'))->firstOrFail();
+        $validated['username'] = $user->username;
+        $user->notify(new PrivateMessageReceived($validated));
 
         return back();
     }
