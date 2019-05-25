@@ -11,10 +11,9 @@
 |
 */
 
-Route::get('/', 'PageController@index');
+Route::get('/', 'PageController@index')->name('pages.index');
 
 // Alla rutter för user
-//Route::resource('users', 'UsersController');
 Route::get('/users/{user}', 'UsersController@show')->name('users.show');
 
 // Alla rutter för posts
@@ -25,8 +24,10 @@ Route::get('/messages/send/{user}', 'PrivateMessagesController@create')->name('m
 Route::post('/messages/', 'PrivateMessagesController@store')->name('messages.store');
 Route::get('/messages/', 'PrivateMessagesController@index')->name('messages.index');
 
+// Rutter för notifikationer
+Route::get('/notifications', 'NotificationsController@update')->name('notifications.update');
+
 // Alla rutter för kommentarer
-//Route::resource('comments', 'CommentsController');
 Route::post('/posts/{post}/comments', 'CommentsController@store')->name('comments.store');
 
 Auth::routes();

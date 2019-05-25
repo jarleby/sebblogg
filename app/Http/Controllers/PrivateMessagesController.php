@@ -9,6 +9,11 @@ use App\PrivateMessage;
 
 class PrivateMessagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $messages = PrivateMessage::where('sender_id', auth()->id())->orWhere('receiver_id', auth()->id())->latest()->get();
@@ -41,7 +46,7 @@ class PrivateMessagesController extends Controller
         PrivateMessage::create($validated);
 
         $user = User::where('id', request('receiver_id'))->firstOrFail();
-        $validated['sender'] = $user->username;
+        $validated['sender'] = auth()->user()->username;
         $user->notify(new PrivateMessageReceived($validated));
 
         return back();

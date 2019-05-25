@@ -30,6 +30,19 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('messages.index') }}">{{ __('Show message') }}</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link active dropdown" id="notifications" data-toggle="{{ auth()->user()->unreadNotifications->count() ? 'dropdown' : '' }}" aria-haspopup="true" aria-expanded="false">Notifications ({{ auth()->user()->unreadNotifications->count() }})</a>
+                        <div class="dropdown-menu" aria-labelledby="notifications">
+                            @foreach(auth()->user()->unreadNotifications as $notification)
+                                <div class="dropdown-item">
+                                    <a href="{{ route('messages.create', $notification->data['sender_id']) }}">New message from {{ $notification->data['sender'] }}</a>
+                                    <p>{{ $notification->created_at }}</p>
+                                </div>
+                            @endforeach
+                            <div class="dropdown-divider"></div>
+                                <a href="{{ route('notifications.update') }}" class="dropdown-item">Mark as read</a>
+                        </div>
+                    </li>
                     <li class="nav-item active">
                         <a href="{{ route('logout') }}" class="nav-link"
                         onclick="event.preventDefault();
