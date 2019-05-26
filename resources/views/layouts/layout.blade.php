@@ -34,13 +34,13 @@
                         <a href="#" class="nav-link active dropdown" id="notifications" data-toggle="{{ auth()->user()->unreadNotifications->count() ? 'dropdown' : '' }}" aria-haspopup="true" aria-expanded="false">Notifications ({{ auth()->user()->unreadNotifications->count() }})</a>
                         <div class="dropdown-menu" aria-labelledby="notifications">
                             @foreach(auth()->user()->unreadNotifications as $notification)
-                                <div class="dropdown-item">
-                                    <a href="{{ route('messages.create', $notification->data['sender_id']) }}">New message from {{ $notification->data['sender'] }}</a>
+                                <a href="{{ route('messages.create', $notification->data['sender_id']) }}" class="dropdown-item">
+                                    <p>New message from {{ $notification->data['sender'] }}</p>
                                     <p>{{ $notification->created_at }}</p>
-                                </div>
+                                </a>
                             @endforeach
                             <div class="dropdown-divider"></div>
-                                <a href="{{ route('notifications.update') }}" class="dropdown-item">Mark as read</a>
+                                <a href="{{ route('notifications.update') }}" class="dropdown-item">Mark all as read</a>
                         </div>
                     </li>
                     <li class="nav-item active">
