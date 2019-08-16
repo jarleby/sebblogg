@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 
 @section('content')
-{{--    {{ $user }}--}}
     @foreach($posts as $post)
         <div class="card border-0 my-3">
             <div class="card-body">

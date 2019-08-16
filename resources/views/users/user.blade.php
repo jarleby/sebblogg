@@ -41,7 +41,7 @@
                         <div class="card-body">
                             <h1 class="card-title text-center"><a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></h1>
 
-                            <p class="card-text">{{ $post->body }}</p>
+                            <p class="card-text">{{ str_limit($post->body, 500) }}</p>
                             <p>Created at {{ $post->created_at }}</p>
                             @if($post->user_id === auth()->id())
                                 <a href="{{ route('posts.edit', $post->id) }}">Edit</a>

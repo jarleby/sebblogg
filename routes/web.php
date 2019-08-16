@@ -14,7 +14,7 @@
 Route::get('/', 'PageController@index')->name('page.index');
 
 // Rutt för att söka
-// Route::get('/search', 'PageController@search')->name('page.search');
+Route::get('/search', 'PageController@search')->name('page.search');
 
 // Alla rutter för user
 Route::get('/users/{user}', 'UsersController@show')->name('users.show');
