@@ -15,7 +15,7 @@ class PostsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['show', 'index']);
+        $this->middleware(['auth', 'verified']);
     }
 
     public function index()

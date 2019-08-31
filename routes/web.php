@@ -33,4 +33,4 @@ Route::get('/notifications', 'NotificationsController@update')->name('notificati
 // Alla rutter för kommentarer
 Route::post('/posts/{post}/comments', 'CommentsController@store')->name('comments.store');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
